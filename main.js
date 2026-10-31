@@ -22,9 +22,20 @@ async function petsArea() {
   petsData.forEach((pet) => {
     const clone = template.content.cloneNode(true);
     clone.querySelector(".pet-name").textContent = pet.name;
+    clone.querySelector(".pet-description").textContent = pet.description;
+    clone.querySelector(".pet-age").textContent = createAgeText(pet.birthYear);
+    clone.querySelector(".pet-card-photo img").src = pet.photo;
+    clone.querySelector(".pet-card-photo img").alt =
+      `A ${pet.type} named ${pet.name}`;
 
     wrapper.appendChild(clone);
   });
   document.querySelector(".list-of-pets").appendChild(wrapper);
 }
 petsArea();
+
+function createAgeText(birthYear) {
+  const currentYear = new Date().getFullYear();
+  const age = currentYear - birthYear;
+  return `${age} Years Old`;
+}
