@@ -42,3 +42,16 @@ function createAgeText(birthYear) {
   const age = currentYear - birthYear;
   return `${age} Years Old`;
 }
+
+const allButtons = document.querySelectorAll(".pet-filter button");
+
+allButtons.forEach((el) => {
+  el.addEventListener("click", handleClick);
+});
+
+function handleClick(e) {
+  allButtons.forEach((el) => {
+    el.classList.remove("active");
+  });
+  e.target.classList.add("active");
+}
